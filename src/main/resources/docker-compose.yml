@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+ mongo-credit-account:
+   image: "mongo"
+   container_name: "mongo-credit-account"
+   ports:
+     - 27017:27017
+ service-credit-account:
+   image: service-credit-account
+   container_name : service-credit-account
+   ports:
+     - 8074:8074
+   links:
+     - mongo-credit-account
