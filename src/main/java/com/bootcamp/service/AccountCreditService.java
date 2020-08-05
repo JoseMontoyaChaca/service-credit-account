@@ -11,19 +11,10 @@ import reactor.core.publisher.Mono;
 public class AccountCreditService {
 	
 	@Autowired
-	AccountCreditRepository repository;
+	private AccountCreditRepository repository;
 	 
 	public Mono<AccountCredit> save (AccountCredit accountCredit){
 		return repository.save(accountCredit);
-	}
-	
-	public Flux<AccountCredit> findAll () 	{
-		return repository.findAll();
-	}
-	
-	
-	public Mono<AccountCredit> findById (int id) 	{
-		return repository.findById(id);
 	}
 	
 	public Mono<Void> update   (AccountCredit accountCredit)	{
@@ -36,6 +27,16 @@ public class AccountCreditService {
 		return findById(id)
 				.flatMap(repository::delete);
 	}
+	
+	public Flux<AccountCredit> findAll () 	{
+		return repository.findAll();
+	}
+	
+	public Mono<AccountCredit> findById (int id) 	{
+		return repository.findById(id);
+	}
+	
+	
 	
 	
 	public Flux<AccountCredit> findDNI(String dniCustomer){
