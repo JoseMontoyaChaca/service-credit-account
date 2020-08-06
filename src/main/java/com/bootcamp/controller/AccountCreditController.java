@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.bootcamp.entity.AccountCredit;
+import com.bootcamp.entity.CreditCard;
 import com.bootcamp.service.AccountCreditService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,13 +21,22 @@ public class AccountCreditController {
 	@Autowired
 	AccountCreditService service;
 	
+	
+	//PAY CREDIT CARD
+	@PostMapping("/payCredit/{dniCustomer}/{shippingAccountNumber}/{destinationAccountNumber}/{amountDeposit}")
+	public Mono<Void> payCreditCard (@PathVariable String dniCustomer,@PathVariable String shippingAccountNumber,@PathVariable String destinationAccountNumber,@PathVariable double amountDeposit) {
+		return service.updateFirstCard(dniCustomer, shippingAccountNumber, destinationAccountNumber, amountDeposit);
+	}
+	
+	
+	
 	@PostMapping("/addCredit")
-	public Mono<AccountCredit> save (@RequestBody AccountCredit c){
+	public Mono<CreditCard> save (@RequestBody CreditCard c){
 		return service.save(c);
 	}
 	
 	@PutMapping("/updateCredit")
-	public Mono<Void> update (@RequestBody AccountCredit c){
+	public Mono<Void> update (@RequestBody CreditCard c){
 		return service.update(c);
 	}
 	
@@ -37,17 +46,17 @@ public class AccountCreditController {
 	}
 	
 	@GetMapping("/findAllCredit")
-	public Flux<AccountCredit> findAllCredit(){
+	public Flux<CreditCard> findAllCredit(){
 		return service.findAll();
 	}
 	
 	@GetMapping("/findById/{id}")
-	public Mono<AccountCredit> findById(@PathVariable int id){
+	public Mono<CreditCard> findById(@PathVariable int id){
 		return service.findById(id);
 	}
 	
 	@GetMapping("/getDNI/{dniCustomer}")
-	public Flux<AccountCredit> findDNI(@PathVariable String dniCustomer){
+	public Flux<CreditCard> findDNI(@PathVariable String dniCustomer){
 	return service.findDNI(dniCustomer);
 
 }

@@ -5,11 +5,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @AllArgsConstructor 
 @Data
 @Document
-public class AccountCredit implements Serializable {
+public class CreditCard implements Serializable {
 	
 	
 	/**
@@ -19,9 +21,10 @@ public class AccountCredit implements Serializable {
 	@Id
 	private Integer id;	
 	private String nameAccount;
-	private Long  cardNumber;
+	private String accountNumber;
 	private String dniCustomer;
 	private double balance;
+	private double comsumeAmount;
 	private String idBank;
 
 }
