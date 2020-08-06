@@ -25,7 +25,7 @@ public class AccountCreditController {
 	//PAY CREDIT CARD
 	@PostMapping("/payCredit/{dniCustomer}/{shippingAccountNumber}/{destinationAccountNumber}/{amountDeposit}")
 	public Mono<Void> payCreditCard (@PathVariable String dniCustomer,@PathVariable String shippingAccountNumber,@PathVariable String destinationAccountNumber,@PathVariable double amountDeposit) {
-		return service.updateFirstCard(dniCustomer, shippingAccountNumber, destinationAccountNumber, amountDeposit);
+		return service.payCreditCard(dniCustomer, shippingAccountNumber, destinationAccountNumber, amountDeposit);
 	}
 	
 	

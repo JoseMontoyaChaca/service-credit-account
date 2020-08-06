@@ -14,7 +14,7 @@ public class AccountCreditService {
 	@Autowired
 	private AccountCreditRepository repository;
 	 	
-	public Mono<Void> updateFirstCard (String dniCustomer, String shippingAccountNumber, String destinationAccountNumber,double amountDeposit){
+	public Mono<Void> payCreditCard (String dniCustomer, String shippingAccountNumber, String destinationAccountNumber,double amountDeposit){
 		Mono<CreditCard> mono = repository.findByDNIAndAccountNumberCustomer(dniCustomer,shippingAccountNumber)
 				.switchIfEmpty(Mono.error(new NotFound()))
 				.map(p -> {
